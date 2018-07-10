@@ -9,9 +9,12 @@ RUN apt-get -qq update && \
     apt-get -qy install apt-utils gettext-base \
                         fcgiwrap git cgit highlight perl \
                         ca-certificates nginx gettext-base \
-                        markdown python-docutils groff && \
+                        markdown python-docutils groff 
+                        liblua5.1-0-dev lua-ldap-dev luarocks \
+                        openssh-server --fix-missing && \
     echo 'UTC' > /etc/timezone && \
     dpkg-reconfigure tzdata && \
+    luarocks install luacrypto && \
     apt-get clean && rm -rf /var/lib/apt/lists/* /tmp/* /var/tmp/*
 
 # Add Tini
